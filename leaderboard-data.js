@@ -1,0 +1,38 @@
+const teachers = [
+  {
+    "name": "Hafeeza",
+    "absences": 0
+  },
+  {
+    "name": "Krishna",
+    "absences": 0
+  },
+  {
+    "name": "Seema",
+    "absences": 3
+  },
+  {
+    "name": "Amjadh",
+    "absences": 1
+  },
+  {
+    "name": "Vinoth",
+    "absences": 0
+  },
+  {
+    "name": "Abraham",
+    "absences": 1
+  },
+  {
+    "name": "Anthony",
+    "absences": 0
+  },
+  {
+    "name": "Sumathi",
+    "absences": 2
+  },
+  {
+    "name": "Azima",
+    "absences": 0
+  }
+];

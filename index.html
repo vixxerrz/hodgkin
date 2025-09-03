@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HODGKIN - Posts</title>
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #34495e;
+      --accent: #3498db;
+      --light: #f4f4f4;
+      --text-dark: #333;
+      --gold: #ffd700;
+      --silver: #c0c0c0;
+      --bronze: #cd7f32;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      min-height: 100vh;
+      background: #fafafa;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background-color: var(--primary);
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .sidebar a:hover, .sidebar a.active {
+      background: var(--secondary);
+    }
+
+    /* Main content */
+    .main {
+      margin-left: 240px;
+      padding: 20px;
+      flex: 1;
+    }
+
+    /* Page headers */
+    h1 {
+      margin-top: 0;
+      color: var(--text-dark);
+    }
+
+    /* Post form */
+    .post-form {
+      margin-bottom: 20px;
+      background: var(--light);
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .post-form input, .post-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .post-form button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 5px;
+    }
+
+    .post-form button:hover {
+      background: #2980b9;
+    }
+
+    /* Posts */
+    .post {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      background: #fff;
+      word-wrap: break-word;
+    }
+
+    .post img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 10px;
+      display: block;
+    }
+    
+    /* Leaderboard section */
+    .leaderboard-preview {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .leaderboard-preview h2 {
+      margin-top: 0;
+      color: var(--primary);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 10px;
+    }
+    
+    .top-teachers {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .teacher-card {
+      background: var(--light);
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      flex: 1;
+      min-width: 120px;
+      position: relative;
+    }
+    
+    .rank-1 {
+      border-top: 4px solid var(--gold);
+    }
+    
+    .rank-2 {
+      border-top: 4px solid var(--silver);
+    }
+    
+    .rank-3 {
+      border-top: 4px solid var(--bronze);
+    }
+    
+    .rank-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .rank-1 .rank-badge {
+      background: var(--gold);
+    }
+    
+    .rank-2 .rank-badge {
+      background: var(--silver);
+    }
+    
+    .rank-3 .rank-badge {
+      background: var(--bronze);
+    }
+    
+    .teacher-name {
+      font-weight: bold;
+      margin: 15px 0 5px;
+    }
+    
+    .absences-count {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin: 5px 0;
+    }
+    
+    .absences-label {
+      font-size: 0.8rem;
+      color: #777;
+    }
+    
+    .view-full {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    .view-full:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive layout */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+      }
+
+      .sidebar h2 {
+        display: none; /* Hide large title on small screens */
+      }
+
+      .sidebar a {
+        margin: 0;
+        padding: 10px;
+        text-align: center;
+        flex: 1;
+        font-size: 0.9rem;
+      }
+
+      .main {
+        margin: 0;
+      }
+      
+      .top-teachers {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>HODGKIN</h2>
+    <a href="index.html" class="active">Posts</a>
+    <a href="leaderboards.html">Leaderboards</a>
+    <a href="timetable.html">Timetable</a>
+  </div>
+
+  <!-- Main content -->
+  <div class="main">
+    <h1>Posts</h1>
+    
+    <!-- Top Teachers Leaderboard Preview -->
+    <div class="leaderboard-preview">
+      <h2>Top Absences This Sem</h2>
+      <div class="top-teachers" id="top-teachers">
+        <!-- Content will be populated by JavaScript -->
+      </div>
+      <a href="leaderboards.html" class="view-full">View Full Leaderboard →</a>
+    </div>
+    
+    <!-- Post Form -->
+    <div class="post-form">
+      <textarea id="postText" placeholder="Write something..." rows="3"></textarea>
+      <input type="file" id="postImage" accept="image/*">
+      <button onclick="addPost()">Add Post</button>
+    </div>
+    
+    <!-- Posts Container -->
+    <div id="posts"></div>
+  </div>
+
+  <script>
+    // Teacher data
+    const teachers = [
+      {
+        "name": "Hafeeza",
+        "absences": 0
+      },
+      {
+        "name": "Krishna",
+        "absences": 0
+      },
+      {
+        "name": "Seema",
+        "absences": 3
+      },
+      {
+        "name": "Amjadh",
+        "absences": 1
+      },
+      {
+        "name": "Vinoth",
+        "absences": 0
+      },
+      {
+        "name": "Abraham",
+        "absences": 1
+      },
+      {
+        "name": "Anthony",
+        "absences": 0
+      },
+      {
+        "name": "Sumathi",
+        "absences": 2
+      },
+      {
+        "name": "Azima",
+        "absences": 0
+      }
+    ];
+    
+    // Display top teachers
+    function displayTopTeachers() {
+      // Sort teachers by absences (descending)
+      const sortedTeachers = [...teachers].sort((a, b) => b.absences - a.absences);
+      
+      // Get top 3
+      const topTeachers = sortedTeachers.slice(0, 3);
+      
+      const container = document.getElementById('top-teachers');
+      container.innerHTML = '';
+      
+      topTeachers.forEach((teacher, index) => {
+        const rankClass = `rank-${index + 1}`;
+        const card = document.createElement('div');
+        card.className = `teacher-card ${rankClass}`;
+        card.innerHTML = `
+          <div class="rank-badge">${index + 1}</div>
+          <div class="teacher-name">${teacher.name}</div>
+          <div class="absences-count">${teacher.absences}</div>
+          <div class="absences-label">Absences</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Load posts from localStorage
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+    function displayPosts() {
+      const postsContainer = document.getElementById("posts");
+      postsContainer.innerHTML = "";
+      posts.slice().reverse().forEach(post => {
+        const postDiv = document.createElement("div");
+        postDiv.classList.add("post");
+        postDiv.innerHTML = `
+          <p>${post.text}</p>
+          ${post.image ? `<img src="${post.image}" alt="Post image">` : ""}
+        `;
+        postsContainer.appendChild(postDiv);
+      });
+    }
+
+    // Add new post
+    function addPost() {
+      const text = document.getElementById("postText").value.trim();
+      const imageInput = document.getElementById("postImage");
+      if (!text && !imageInput.files.length) return;
+
+      if (imageInput.files.length) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          posts.push({ text, image: e.target.result });
+          localStorage.setItem("posts", JSON.stringify(posts));
+          displayPosts();
+        };
+        reader.readAsDataURL(imageInput.files[0]);
+      } else {
+        posts.push({ text, image: null });
+        localStorage.setItem("posts", JSON.stringify(posts));
+        displayPosts();
+      }
+
+      // Reset form
+      document.getElementById("postText").value = "";
+      imageInput.value = "";
+    }
+
+    // Display content on load
+    document.addEventListener('DOMContentLoaded', function() {
+      displayTopTeachers();
+      displayPosts();
+    });
+  </script>
+</body>
+</html>
