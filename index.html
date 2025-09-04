@@ -38,36 +38,44 @@
       min-height: 100vh;
     }
 
-    /* Sidebar */
-    nav {
+    /* Sidebar - Updated to match the timetable example */
+    .sidebar {
       width: 220px;
-      background: var(--secondary);
+      background-color: var(--primary);
       color: white;
       padding: 20px;
-      flex-shrink: 0;
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
     }
 
-    nav h2 {
-      font-size: 1.2rem;
-      margin-bottom: 15px;
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
     }
 
-    nav a {
+    .sidebar a {
       display: block;
       color: white;
       text-decoration: none;
-      padding: 8px 0;
-      transition: 0.3s;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      transition: background 0.2s;
     }
 
-    nav a:hover {
-      color: var(--accent);
+    .sidebar a:hover, .sidebar a.active {
+      background: var(--secondary);
     }
-
     /* Main content */
     main {
-      flex-grow: 1;
+      margin-left: 240px;
       padding: 20px;
+      flex-grow: 1;
     }
 
     /* Leaderboard Section */
@@ -203,28 +211,47 @@
       margin-top: 10px;
     }
 
+    /* Responsive layout */
     @media (max-width: 768px) {
       .container {
         flex-direction: column;
       }
+      
       nav {
+        position: relative;
         width: 100%;
+        height: auto;
         display: flex;
+        flex-direction: row;
         justify-content: space-around;
+        padding: 10px;
+      }
+      
+      nav h2 {
+        display: none;
+      }
+      
+      nav a {
+        margin: 0;
+        padding: 10px;
+        text-align: center;
+        flex: 1;
+        font-size: 0.9rem;
+      }
+      
+      main {
+        margin-left: 0;
       }
     }
   </style>
 </head>
 <body>
-  <header>HODGKIN</header>
-  <div class="container">
-    <nav>
-      <h2>Menu</h2>
-      <a href="index.html">Home</a>
-      <a href="leaderboards.html">Substitution Leaderboards</a>
-      <a href="timetable.html">Timetable</a>
-      <a href="notes.html">Notes</a>
-    </nav>
+<div class="sidebar">
+    <h2>HODGKIN</h2>
+    <a href="index.html">Posts</a>
+    <a href="leaderboards.html">Leaderboards</a>
+    <a href="timetable.html" >Timetable</a>
+  </div>
     <main>
       <!-- Leaderboard -->
       <div class="leaderboard-preview">
