@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HODGKIN - Posts</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HODGKIN - Home</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     :root {
       --primary: #2c3e50;
@@ -11,400 +12,303 @@
       --accent: #3498db;
       --light: #f4f4f4;
       --text-dark: #333;
-      --gold: #ffd700;
-      --silver: #c0c0c0;
-      --bronze: #cd7f32;
+      --gold: #f1c40f;
+      --silver: #bdc3c7;
+      --bronze: #d35400;
     }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fafafa;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      width: 220px;
-      background-color: var(--primary);
-      color: white;
-      padding: 20px;
-      box-sizing: border-box;
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-    }
-
-    .sidebar h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 1.4rem;
-      letter-spacing: 1px;
-    }
-
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 6px;
-      transition: background 0.2s;
-    }
-
-    .sidebar a:hover, .sidebar a.active {
-      background: var(--secondary);
-    }
-
-    /* Main content */
-    .main {
-      margin-left: 240px;
-      padding: 20px;
-      flex: 1;
-    }
-
-    /* Page headers */
-    h1 {
-      margin-top: 0;
       color: var(--text-dark);
     }
 
-    /* Post form */
-    .post-form {
-      margin-bottom: 20px;
-      background: var(--light);
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    .post-form input, .post-form textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-
-    .post-form button {
-      background: var(--accent);
+    header {
+      background: var(--primary);
       color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1rem;
-      margin-top: 5px;
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
 
-    .post-form button:hover {
-      background: #2980b9;
+    .container {
+      display: flex;
+      min-height: 100vh;
     }
 
-    /* Posts */
-    .post {
-      border: 1px solid #ddd;
-      padding: 15px;
+    /* Sidebar */
+    nav {
+      width: 220px;
+      background: var(--secondary);
+      color: white;
+      padding: 20px;
+      flex-shrink: 0;
+    }
+
+    nav h2 {
+      font-size: 1.2rem;
       margin-bottom: 15px;
-      border-radius: 10px;
-      background: #fff;
-      word-wrap: break-word;
     }
 
-    .post img {
-      max-width: 100%;
-      border-radius: 6px;
-      margin-top: 10px;
+    nav a {
       display: block;
+      color: white;
+      text-decoration: none;
+      padding: 8px 0;
+      transition: 0.3s;
     }
-    
-    /* Leaderboard section */
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* Main content */
+    main {
+      flex-grow: 1;
+      padding: 20px;
+    }
+
+    /* Leaderboard Section */
     .leaderboard-preview {
       background: white;
       border-radius: 10px;
-      padding: 15px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    
+
     .leaderboard-preview h2 {
       margin-top: 0;
-      color: var(--primary);
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 10px;
+      margin-bottom: 15px;
     }
-    
-    .top-teachers {
+
+    .top-three {
       display: flex;
+      gap: 15px;
       justify-content: space-around;
       flex-wrap: wrap;
-      gap: 15px;
     }
-    
-    .teacher-card {
-      background: var(--light);
-      border-radius: 8px;
-      padding: 15px;
-      text-align: center;
+
+    .top-card {
       flex: 1;
-      min-width: 120px;
+      min-width: 150px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 25px 15px 15px;
       position: relative;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-    
-    .rank-1 {
-      border-top: 4px solid var(--gold);
-    }
-    
-    .rank-2 {
-      border-top: 4px solid var(--silver);
-    }
-    
-    .rank-3 {
-      border-top: 4px solid var(--bronze);
-    }
-    
+
     .rank-badge {
       position: absolute;
-      top: -12px;
+      top: -14px;
       left: 50%;
       transform: translateX(-50%);
-      width: 24px;
-      height: 24px;
       border-radius: 50%;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      color: white;
+      font-size: 14px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    
+
     .rank-1 .rank-badge {
       background: var(--gold);
+      color: #000;
     }
-    
     .rank-2 .rank-badge {
       background: var(--silver);
+      color: #000;
     }
-    
     .rank-3 .rank-badge {
       background: var(--bronze);
+      color: #fff;
     }
-    
-    .teacher-name {
-      font-weight: bold;
-      margin: 15px 0 5px;
+
+    .top-card h3 {
+      margin: 10px 0 5px;
     }
-    
-    .absences-count {
-      font-size: 1.5rem;
-      color: var(--accent);
-      margin: 5px 0;
-    }
-    
-    .absences-label {
-      font-size: 0.8rem;
-      color: #777;
-    }
-    
-    .view-full {
-      display: block;
-      text-align: center;
+
+    .leaderboard-link {
+      display: inline-block;
       margin-top: 15px;
       color: var(--accent);
+      font-weight: 600;
       text-decoration: none;
-      font-weight: bold;
     }
-    
-    .view-full:hover {
+    .leaderboard-link:hover {
       text-decoration: underline;
     }
 
-    /* Responsive layout */
+    /* Notes Section */
+    .notes {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .notes h2 {
+      margin-top: 0;
+    }
+
+    .note-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .note-form textarea {
+      resize: vertical;
+      min-height: 60px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .note-form input[type="file"] {
+      font-size: 14px;
+    }
+
+    .note-form button {
+      align-self: flex-start;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .note-form button:hover {
+      background: #2980b9;
+    }
+
+    .note {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+
+    .note img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
     @media (max-width: 768px) {
-      body {
+      .container {
         flex-direction: column;
       }
-
-      .sidebar {
-        position: relative;
+      nav {
         width: 100%;
-        height: auto;
         display: flex;
-        flex-direction: row;
         justify-content: space-around;
-        padding: 10px;
-      }
-
-      .sidebar h2 {
-        display: none; /* Hide large title on small screens */
-      }
-
-      .sidebar a {
-        margin: 0;
-        padding: 10px;
-        text-align: center;
-        flex: 1;
-        font-size: 0.9rem;
-      }
-
-      .main {
-        margin: 0;
-      }
-      
-      .top-teachers {
-        flex-direction: column;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>HODGKIN</h2>
-    <a href="index.html" class="active">Posts</a>
-    <a href="leaderboards.html">Leaderboards</a>
-    <a href="timetable.html">Timetable</a>
-  </div>
-
-  <!-- Main content -->
-  <div class="main">
-    <h1>Posts</h1>
-    
-    <!-- Top Teachers Leaderboard Preview -->
-    <div class="leaderboard-preview">
-      <h2>Top Absences This Semister</h2>
-      <div class="top-teachers" id="top-teachers">
-        <!-- Content will be populated by JavaScript -->
+  <header>HODGKIN</header>
+  <div class="container">
+    <nav>
+      <h2>Menu</h2>
+      <a href="index.html">Home</a>
+      <a href="leaderboards.html">Substitution Leaderboards</a>
+      <a href="timetable.html">Timetable</a>
+      <a href="notes.html">Notes</a>
+    </nav>
+    <main>
+      <!-- Leaderboard -->
+      <div class="leaderboard-preview">
+        <h2>Top Absences This Semester</h2>
+        <div class="top-three" id="topThree"></div>
+        <a href="leaderboards.html" class="leaderboard-link">View Full Leaderboard →</a>
       </div>
-      <a href="leaderboards.html" class="view-full">View Full Leaderboard →</a>
-    </div>
-    
-    <!-- Post Form -->
-    <div class="post-form">
-      <textarea id="postText" placeholder="Write something..." rows="3"></textarea>
-      <input type="file" id="postImage" accept="image/*">
-      <button onclick="addPost()">Add Post</button>
-    </div>
-    
-    <!-- Posts Container -->
-    <div id="posts"></div>
+
+      <!-- Notes -->
+      <div class="notes">
+        <h2>Notes</h2>
+        <form class="note-form" id="noteForm">
+          <textarea id="noteText" placeholder="Write something..."></textarea>
+          <input type="file" id="noteImage" accept="image/*"/>
+          <button type="submit">Add Note</button>
+        </form>
+        <div id="notesContainer"></div>
+      </div>
+    </main>
   </div>
 
+  <script src="leaderboard-data.js"></script>
   <script>
-    // Teacher data
-    const teachers = [
-      {
-        "name": "Hafeeza",
-        "absences": 0
-      },
-      {
-        "name": "Krishna",
-        "absences": 0
-      },
-      {
-        "name": "Seema",
-        "absences": 3
-      },
-      {
-        "name": "Amjadh",
-        "absences": 1
-      },
-      {
-        "name": "Vinoth",
-        "absences": 0
-      },
-      {
-        "name": "Abraham",
-        "absences": 1
-      },
-      {
-        "name": "Anthony",
-        "absences": 0
-      },
-      {
-        "name": "Sumathi",
-        "absences": 2
-      },
-      {
-        "name": "Azima",
-        "absences": 0
-      }
-    ];
-    
-    // Display top teachers
-    function displayTopTeachers() {
-      // Sort teachers by absences (descending)
-      const sortedTeachers = [...teachers].sort((a, b) => b.absences - a.absences);
-      
-      // Get top 3
-      const topTeachers = sortedTeachers.slice(0, 3);
-      
-      const container = document.getElementById('top-teachers');
-      container.innerHTML = '';
-      
-      topTeachers.forEach((teacher, index) => {
-        const rankClass = `rank-${index + 1}`;
-        const card = document.createElement('div');
-        card.className = `teacher-card ${rankClass}`;
+    // --- Leaderboard ---
+    function renderTopThree() {
+      const sorted = [...teachers].sort((a,b) => b.absences - a.absences);
+      const top3 = sorted.slice(0,3);
+      const container = document.getElementById("topThree");
+      container.innerHTML = "";
+
+      top3.forEach((t, i) => {
+        const card = document.createElement("div");
+        card.className = `top-card rank-${i+1}`;
         card.innerHTML = `
-          <div class="rank-badge">${index + 1}</div>
-          <div class="teacher-name">${teacher.name}</div>
-          <div class="absences-count">${teacher.absences}</div>
-          <div class="absences-label">Absences</div>
+          <div class="rank-badge">${i+1}</div>
+          <h3>${t.name}</h3>
+          <p>${t.absences} Absences</p>
         `;
         container.appendChild(card);
       });
     }
+    renderTopThree();
 
-    // Load posts from localStorage
-    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+    // --- Notes ---
+    const noteForm = document.getElementById("noteForm");
+    const notesContainer = document.getElementById("notesContainer");
 
-    function displayPosts() {
-      const postsContainer = document.getElementById("posts");
-      postsContainer.innerHTML = "";
-      posts.slice().reverse().forEach(post => {
-        const postDiv = document.createElement("div");
-        postDiv.classList.add("post");
-        postDiv.innerHTML = `
-          <p>${post.text}</p>
-          ${post.image ? `<img src="${post.image}" alt="Post image">` : ""}
+    function loadNotes() {
+      const notes = JSON.parse(localStorage.getItem("notes")) || [];
+      notesContainer.innerHTML = "";
+      notes.forEach(n => {
+        const div = document.createElement("div");
+        div.className = "note";
+        div.innerHTML = `
+          <p>${n.text}</p>
+          ${n.image ? `<img src="${n.image}" />` : ""}
         `;
-        postsContainer.appendChild(postDiv);
+        notesContainer.appendChild(div);
       });
     }
 
-    // Add new post
-    function addPost() {
-      const text = document.getElementById("postText").value.trim();
-      const imageInput = document.getElementById("postImage");
-      if (!text && !imageInput.files.length) return;
+    noteForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const text = document.getElementById("noteText").value.trim();
+      const file = document.getElementById("noteImage").files[0];
 
-      if (imageInput.files.length) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          posts.push({ text, image: e.target.result });
-          localStorage.setItem("posts", JSON.stringify(posts));
-          displayPosts();
-        };
-        reader.readAsDataURL(imageInput.files[0]);
-      } else {
-        posts.push({ text, image: null });
-        localStorage.setItem("posts", JSON.stringify(posts));
-        displayPosts();
-      }
+      if (!text && !file) return;
 
-      // Reset form
-      document.getElementById("postText").value = "";
-      imageInput.value = "";
-    }
-
-    // Display content on load
-    document.addEventListener('DOMContentLoaded', function() {
-      displayTopTeachers();
-      displayPosts();
+      const reader = new FileReader();
+      reader.onload = function() {
+        const notes = JSON.parse(localStorage.getItem("notes")) || [];
+        notes.unshift({
+          text,
+          image: file ? reader.result : null
+        });
+        localStorage.setItem("notes", JSON.stringify(notes));
+        loadNotes();
+        noteForm.reset();
+      };
+      if (file) reader.readAsDataURL(file);
+      else reader.onload();
     });
+
+    loadNotes();
   </script>
 </body>
 </html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HODGKIN - Edit Absences</title>
+  <style>
+    :root {
+      --primary: #2c3e50; --secondary: #34495e; --accent: #3498db;
+      --danger: #e74c3c; --success: #2ecc71; --light: #f4f4f4; --text-dark: #333;
+    }
+    body { margin:0; font-family: Arial, sans-serif; background:#fafafa; }
+    header { background: var(--primary); color:white; padding: 15px; }
+    .container { max-width: 900px; margin:auto; padding:20px; }
+    .teacher-list { background:white; border-radius:8px; overflow:hidden; }
+    .teacher-header, .teacher-item { display:grid; grid-template-columns: 3fr 1fr 1fr; padding:12px; }
+    .teacher-header { background: var(--secondary); color:white; font-weight:bold; }
+    .teacher-item:nth-child(even) { background:#f9f9f9; }
+    .btn-increment, .btn-decrement { border:none; color:white; border-radius:50%; width:30px; height:30px; font-weight:bold; cursor:pointer; }
+    .btn-increment { background: var(--danger); }
+    .btn-decrement { background: var(--success); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HODGKIN - Edit Absences</h1>
+    <a href="leaderboards.html" style="color:white;">← Back to Leaderboards</a>
+  </header>
+
+  <div class="container">
+    <div class="teacher-list">
+      <div class="teacher-header">
+        <div>Teacher</div><div>Absences</div><div>Actions</div>
+      </div>
+      <div id="teachersContainer"></div>
+    </div>
+    <button onclick="saveChanges()" style="margin-top:20px; padding:10px 20px; background:var(--success); color:white; border:none; border-radius:6px;">Save Changes</button>
+  </div>
+
+  <script src="leaderboard-data.js"></script>
+  <script>
+    let editedTeachers = JSON.parse(JSON.stringify(teachers));
+
+    function renderTeachers() {
+      const container = document.getElementById("teachersContainer");
+      container.innerHTML = "";
+      editedTeachers.forEach((t,i) => {
+        const div = document.createElement("div");
+        div.className = "teacher-item";
+        div.innerHTML = `
+          <div>${t.name}</div>
+          <div class="absence-count">${t.absences}</div>
+          <div>
+            <button class="btn-increment" onclick="increment(${i})">+</button>
+            <button class="btn-decrement" onclick="decrement(${i})">-</button>
+          </div>`;
+        container.appendChild(div);
+      });
+    }
+
+    function increment(i) { editedTeachers[i].absences++; renderTeachers(); }
+    function decrement(i) { if(editedTeachers[i].absences>0){ editedTeachers[i].absences--; renderTeachers(); } }
+
+    function saveChanges() {
+      alert("Changes saved locally. (Note: To persist changes for everyone, you’ll need a backend or manual update to leaderboard-data.js)");
+      console.log("Updated teachers:", editedTeachers);
+    }
+
+    document.addEventListener("DOMContentLoaded", renderTeachers);
+  </script>
+</body>
+</html>
+
