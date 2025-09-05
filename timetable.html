@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HODGKIN - Timetable</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HODGKIN - Home</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     :root {
       --primary: #2c3e50;
@@ -11,14 +12,18 @@
       --accent: #3498db;
       --light: #f4f4f4;
       --text-dark: #333;
+      --gold: #f1c40f;
+      --silver: #bdc3c7;
+      --bronze: #d35400;
     }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fafafa;
+      color: var(--text-dark);
       display: flex;
       min-height: 100vh;
-      background: #fafafa;
     }
 
     /* Sidebar */
@@ -51,40 +56,130 @@
       transition: background 0.2s;
     }
 
-    .sidebar a:hover, .sidebar a.active {
+    .sidebar a:hover,
+    .sidebar a.active {
       background: var(--secondary);
     }
 
     /* Main content */
-    .main {
+    main {
       margin-left: 240px;
       padding: 20px;
       flex: 1;
     }
 
-    /* Page headers */
-    h1 {
-      margin-top: 0;
-      color: var(--text-dark);
-    }
-
-    /* Timetable styles */
-    .timetable-container {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .timetable-image {
-      max-width: 100%;
+    /* Leaderboard Section */
+    .leaderboard-preview {
+      background: white;
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      margin-top: 15px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
     }
 
-    .last-updated {
+    .leaderboard-preview h2 {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .top-three {
+      display: flex;
+      gap: 15px;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .top-card {
+      flex: 1;
+      min-width: 150px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 25px 15px 15px;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .rank-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .rank-1 .rank-badge { background: var(--gold); color: #000; }
+    .rank-2 .rank-badge { background: var(--silver); color: #000; }
+    .rank-3 .rank-badge { background: var(--bronze); color: #fff; }
+
+    .top-card h3 {
+      margin: 10px 0 5px;
+    }
+
+    .leaderboard-link {
+      display: inline-block;
       margin-top: 15px;
-      font-style: italic;
-      color: #777;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .leaderboard-link:hover { text-decoration: underline; }
+
+    /* Notes Section */
+    .notes {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .notes h2 { margin-top: 0; }
+
+    .note-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .note-form textarea {
+      resize: vertical;
+      min-height: 60px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .note-form input[type="file"] { font-size: 14px; }
+
+    .note-form button {
+      align-self: flex-start;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .note-form button:hover { background: #2980b9; }
+
+    .note {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+    .note img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 10px;
     }
 
     /* Responsive layout */
@@ -96,7 +191,6 @@
       .sidebar {
         position: relative;
         width: 100%;
-        font-family: Arial, sans-serif;
         height: auto;
         display: flex;
         flex-direction: row;
@@ -104,9 +198,7 @@
         padding: 10px;
       }
 
-      .sidebar h2 {
-        display: none;
-      }
+      .sidebar h2 { display: none; }
 
       .sidebar a {
         margin: 0;
@@ -116,8 +208,8 @@
         font-size: 0.9rem;
       }
 
-      .main {
-        margin: 0;
+      main {
+        margin-left: 0;
       }
     }
   </style>
@@ -126,45 +218,95 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <h2>HODGKIN</h2>
-    <a href="index.html">Posts</a>
+    <a href="index.html" class="active">Posts</a>
     <a href="leaderboards.html">Leaderboards</a>
-    <a href="timetable.html" class="active">Timetable</a>
+    <a href="timetable.html">Timetable</a>
   </div>
 
   <!-- Main content -->
-  <div class="main">
-    <h1>Timetable</h1>
-    <p>Current schedule for substitutions and classes</p>
-    
-    <div class="timetable-container">
-      <img src="timetable.png" alt="Timetable" class="timetable-image" onerror="this.style.display='none';document.getElementById('no-timetable-message').style.display='block';">
-      
-      <div id="no-timetable-message" style="display: none; padding: 20px; background: #f8f9fa; border-radius: 8px; margin-top: 20px;">
-        <p>Timetable image not found. Please make sure <b>timetable.png</b> is in the same folder.</p>
-      </div>
-      
-      <p class="last-updated">Last updated: <span id="update-date">Not specified</span></p>
+  <main>
+    <!-- Leaderboard -->
+    <div class="leaderboard-preview">
+      <h2>Top Absences This Semester</h2>
+      <div class="top-three" id="topThree"></div>
+      <a href="leaderboards.html" class="leaderboard-link">View Full Leaderboard →</a>
     </div>
-  </div>
 
+    <!-- Notes -->
+    <div class="notes">
+      <h2>Notes</h2>
+      <form class="note-form" id="noteForm">
+        <textarea id="noteText" placeholder="Write something..."></textarea>
+        <input type="file" id="noteImage" accept="image/*"/>
+        <button type="submit">Add Note</button>
+      </form>
+      <div id="notesContainer"></div>
+    </div>
+  </main>
+
+  <script src="leaderboard-data.js"></script>
   <script>
-    // Set or load "last updated" timestamp
-    document.addEventListener('DOMContentLoaded', function() {
-      if (!localStorage.getItem('timetableLastUpdated')) {
-        const now = new Date();
-        const formattedDate = now.toLocaleDateString('en-US', { 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit'
+    // --- Leaderboard ---
+    function renderTopThree() {
+      const sorted = [...teachers].sort((a,b) => b.absences - a.absences);
+      const top3 = sorted.slice(0,3);
+      const container = document.getElementById("topThree");
+      container.innerHTML = "";
+
+      top3.forEach((t, i) => {
+        const card = document.createElement("div");
+        card.className = \`top-card rank-\${i+1}\`;
+        card.innerHTML = \`
+          <div class="rank-badge">\${i+1}</div>
+          <h3>\${t.name}</h3>
+          <p>\${t.absences} Absences</p>
+        \`;
+        container.appendChild(card);
+      });
+    }
+    renderTopThree();
+
+    // --- Notes ---
+    const noteForm = document.getElementById("noteForm");
+    const notesContainer = document.getElementById("notesContainer");
+
+    function loadNotes() {
+      const notes = JSON.parse(localStorage.getItem("notes")) || [];
+      notesContainer.innerHTML = "";
+      notes.forEach(n => {
+        const div = document.createElement("div");
+        div.className = "note";
+        div.innerHTML = \`
+          <p>\${n.text}</p>
+          \${n.image ? \`<img src="\${n.image}" />\` : ""}
+        \`;
+        notesContainer.appendChild(div);
+      });
+    }
+
+    noteForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const text = document.getElementById("noteText").value.trim();
+      const file = document.getElementById("noteImage").files[0];
+
+      if (!text && !file) return;
+
+      const reader = new FileReader();
+      reader.onload = function() {
+        const notes = JSON.parse(localStorage.getItem("notes")) || [];
+        notes.unshift({
+          text,
+          image: file ? reader.result : null
         });
-        document.getElementById('update-date').textContent = formattedDate;
-        localStorage.setItem('timetableLastUpdated', formattedDate);
-      } else {
-        document.getElementById('update-date').textContent = localStorage.getItem('timetableLastUpdated');
-      }
+        localStorage.setItem("notes", JSON.stringify(notes));
+        loadNotes();
+        noteForm.reset();
+      };
+      if (file) reader.readAsDataURL(file);
+      else reader.onload();
     });
+
+    loadNotes();
   </script>
 </body>
 </html>

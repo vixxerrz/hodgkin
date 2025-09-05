@@ -38,7 +38,7 @@
       min-height: 100vh;
     }
 
-    /* Sidebar - Updated to match the timetable example */
+    /* Sidebar */
     .sidebar {
       width: 220px;
       background-color: var(--primary);
@@ -72,6 +72,7 @@
     .sidebar a:hover, .sidebar a.active {
       background: var(--secondary);
     }
+
     /* Main content */
     main {
       margin-left: 240px;
@@ -217,29 +218,30 @@
       .container {
         flex-direction: column;
       }
-      
-      nav {
+
+      .sidebar {
         position: relative;
         width: 100%;
         height: auto;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        align-items: center;
         padding: 10px;
       }
-      
-      nav h2 {
+
+      .sidebar h2 {
         display: none;
       }
-      
-      nav a {
+
+      .sidebar a {
         margin: 0;
         padding: 10px;
         text-align: center;
         flex: 1;
         font-size: 0.9rem;
       }
-      
+
       main {
         margin-left: 0;
       }
@@ -247,32 +249,32 @@
   </style>
 </head>
 <body>
-<div class="sidebar">
+  <div class="sidebar">
     <h2>HODGKIN</h2>
-    <a href="index.html">Posts</a>
+    <a href="index.html" class="active">Posts</a>
     <a href="leaderboards.html">Leaderboards</a>
-    <a href="timetable.html" >Timetable</a>
+    <a href="timetable.html">Timetable</a>
   </div>
-    <main>
-      <!-- Leaderboard -->
-      <div class="leaderboard-preview">
-        <h2>Top Absences This Semester</h2>
-        <div class="top-three" id="topThree"></div>
-        <a href="leaderboards.html" class="leaderboard-link">View Full Leaderboard →</a>
-      </div>
 
-      <!-- Notes -->
-      <div class="notes">
-        <h2>Notes</h2>
-        <form class="note-form" id="noteForm">
-          <textarea id="noteText" placeholder="Write something..."></textarea>
-          <input type="file" id="noteImage" accept="image/*"/>
-          <button type="submit">Add Note</button>
-        </form>
-        <div id="notesContainer"></div>
-      </div>
-    </main>
-  </div>
+  <main>
+    <!-- Leaderboard -->
+    <div class="leaderboard-preview">
+      <h2>Top Absences This Semester</h2>
+      <div class="top-three" id="topThree"></div>
+      <a href="leaderboards.html" class="leaderboard-link">View Full Leaderboard →</a>
+    </div>
+
+    <!-- Notes -->
+    <div class="notes">
+      <h2>Notes</h2>
+      <form class="note-form" id="noteForm">
+        <textarea id="noteText" placeholder="Write something..."></textarea>
+        <input type="file" id="noteImage" accept="image/*"/>
+        <button type="submit">Add Note</button>
+      </form>
+      <div id="notesContainer"></div>
+    </div>
+  </main>
 
   <script src="leaderboard-data.js"></script>
   <script>
@@ -340,3 +342,4 @@
   </script>
 </body>
 </html>
+
