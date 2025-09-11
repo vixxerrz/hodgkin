@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HODGKIN - Timetable</title>
+  <title>GRD9</title>
   <style>
     :root {
       --primary: #2c3e50;
@@ -124,7 +124,7 @@
 <body>
   <!-- Sidebar -->
   <div class="sidebar">
-    <h2>HODGKIN</h2>
+    <h2>GRD9</h2>
     <a href="index.html">Posts</a>
     <a href="leaderboards.html">Leaderboards</a>
     <a href="timetable.html" class="active">Timetable</a>
@@ -133,38 +133,29 @@
   <!-- Main content -->
   <div class="main">
     <h1>Timetable</h1>
-    <p>Current schedule for substitutions and classes</p>
     
     <div class="timetable-container">
-      <img src="timetable.png" alt="Timetable" class="timetable-image" onerror="this.style.display='none';document.getElementById('no-timetable-message').style.display='block';">
+      <img src="ttg.png" alt="Timetable" class="timetable-image" onerror="this.style.display='none';document.getElementById('no-timetable-message').style.display='block';">
       
       <div id="no-timetable-message" style="display: none; padding: 20px; background: #f8f9fa; border-radius: 8px; margin-top: 20px;">
-        <p>Timetable image not found. Please make sure <b>timetable.png</b> is in the same folder.</p>
+        <p>Timetable image not found. Please contact vix <b>timetable.png</b> is in the same folder.</p>
+      </div>
+          <div class="timetable-container">
+      <img src="tth.png" alt="Timetable" class="timetable-image" onerror="this.style.display='none';document.getElementById('no-timetable-message').style.display='block';">
+      
+      <div id="no-timetable-message" style="display: none; padding: 20px; background: #f8f9fa; border-radius: 8px; margin-top: 20px;">
+        <p>Timetable image not found. Please contact vix <b>timetable.png</b> is in the same folder.</p>
+      </div>
+          <div class="timetable-container">
+      <img src="ttge.png" alt="Timetable" class="timetable-image" onerror="this.style.display='none';document.getElementById('no-timetable-message').style.display='block';">
+      
+      <div id="no-timetable-message" style="display: none; padding: 20px; background: #f8f9fa; border-radius: 8px; margin-top: 20px;">
+        <p>Timetable image not found. Please contact vix <b>timetable.png</b> is in the same folder.</p>
       </div>
       
-      <p class="last-updated">Last updated: <span id="update-date">Not specified</span></p>
     </div>
   </div>
 
-  <script>
-    // Set or load "last updated" timestamp
-    document.addEventListener('DOMContentLoaded', function() {
-      if (!localStorage.getItem('timetableLastUpdated')) {
-        const now = new Date();
-        const formattedDate = now.toLocaleDateString('en-US', { 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit'
-        });
-        document.getElementById('update-date').textContent = formattedDate;
-        localStorage.setItem('timetableLastUpdated', formattedDate);
-      } else {
-        document.getElementById('update-date').textContent = localStorage.getItem('timetableLastUpdated');
-      }
-    });
-  </script>
 </body>
 </html>
 
