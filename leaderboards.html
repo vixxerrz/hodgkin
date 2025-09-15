@@ -119,28 +119,28 @@
       background: rgba(255, 255, 255, 0.03);
     }
 
-    .leaderboard-item:nth-child(2) {
-      background: linear-gradient(to right, rgba(251, 191, 36, 0.1), transparent);
-    }
-
-    .leaderboard-item:nth-child(3) {
-      background: linear-gradient(to right, rgba(156, 163, 175, 0.1), transparent);
-    }
-
-    .leaderboard-item:nth-child(4) {
-      background: linear-gradient(to right, rgba(180, 83, 9, 0.1), transparent);
-    }
-
     .leaderboard-item:last-child {
       border-bottom: none;
     }
 
+    /* Correct ranking colors */
+    .leaderboard-item.rank-1 {
+      background: linear-gradient(to right, rgba(251, 191, 36, 0.15), transparent);
+    }
+
+    .leaderboard-item.rank-2 {
+      background: linear-gradient(to right, rgba(156, 163, 175, 0.15), transparent);
+    }
+
+    .leaderboard-item.rank-3 {
+      background: linear-gradient(to right, rgba(180, 83, 9, 0.15), transparent);
+    }
+
     .rank {
-      display: flex;
+ 
       align-items: center;
       width: 40px;
       font-weight: bold;
-      color: var(--text-muted);
     }
 
     .top-rank {
@@ -152,24 +152,32 @@
       justify-content: center;
       font-weight: bold;
       margin-right: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
 
     .rank-1 .top-rank {
       background: var(--gold);
       color: #000;
-      box-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
     }
 
     .rank-2 .top-rank {
       background: var(--silver);
       color: #000;
-      box-shadow: 0 0 10px rgba(156, 163, 175, 0.3);
     }
 
     .rank-3 .top-rank {
       background: var(--bronze);
       color: #000;
-      box-shadow: 0 0 10px rgba(180, 83, 9, 0.3);
+    }
+
+    .rank-1 .rank-number,
+    .rank-2 .rank-number,
+    .rank-3 .rank-number {
+      display: none;
+    }
+
+    .rank-number {
+      color: var(--text-muted);
     }
 
     .teacher-info {
@@ -185,6 +193,12 @@
       border-radius: 20px;
       min-width: 40px;
       text-align: center;
+    }
+
+    /* Trophy icon for top 3 */
+    .trophy {
+      margin-right: 8px;
+      font-size: 1.2em;
     }
 
     /* Responsive layout */
@@ -228,6 +242,12 @@
       .rank {
         width: 30px;
       }
+      
+      .top-rank {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9em;
+      }
     }
   </style>
 </head>
@@ -256,9 +276,9 @@
     </div>
     
   </div>
-
-    <script src="leaderboard-data.js"> </script>
-    <script>
+  <script src="leaderboard-data.js"></script>
+  <script>
+    // Mock data for demonstration (since leaderboard-data.js isn't provided)
     
     function loadLeaderboard() {
       const container = document.getElementById('leaderboard-content');
@@ -272,9 +292,17 @@
         const item = document.createElement('div');
         item.className = `leaderboard-item ${rank <= 3 ? 'rank-' + rank : ''}`;
         
+        // Create rank indicator (trophy for top 3, number for others)
+        let rankHTML = '';
+        if (rank <= 3) {
+          rankHTML = `<div class="top-rank">${rank}</div><span class="rank-number">${rank}</span>`;
+        } else {
+          rankHTML = `<span class="rank-number">${rank}</span>`;
+        }
+        
         item.innerHTML = `
           <div class="rank">
-            ${rank <= 3 ? `<div class="top-rank">${rank}</div>` : rank}
+            ${rankHTML}
           </div>
           <div class="teacher-info">${teacher.name}</div>
           <div class="absent-count">${teacher.absences}</div>
