@@ -7,24 +7,21 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     :root {
-      --primary: #1a1a2e;
-      --secondary: #2b2c2e;
-      --accent: #0ea5e9;
-      --dark-bg: #121212;
-      --dark-surface: #1e1e1e;
-      --text-light: #e1e1e1;
-      --text-muted: #a0a0a0;
-      --gold: #fbbf24;
-      --silver: #9ca3af;
-      --bronze: #b45309;
-      --border-dark: #2d2d2d;
+      --primary: #2c3e50;
+      --secondary: #34495e;
+      --accent: #3498db;
+      --light: #f4f4f4;
+      --text-dark: #333;
+      --gold: #f1c40f;
+      --silver: #bdc3c7;
+      --bronze: #e59c46;
     }
 
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--dark-bg);
-      color: var(--text-light);
+      background: #fafafa;
+      color: var(--text-dark);
     }
 
     header {
@@ -34,7 +31,6 @@
       text-align: center;
       font-size: 1.5rem;
       font-weight: bold;
-      border-bottom: 1px solid var(--border-dark);
     }
 
     .container {
@@ -54,7 +50,6 @@
       left: 0;
       bottom: 0;
       font-family: Arial, sans-serif;
-      border-right: 1px solid var(--border-dark);
     }
 
     .sidebar h2 {
@@ -62,22 +57,20 @@
       margin-bottom: 20px;
       font-size: 1.4rem;
       letter-spacing: 1px;
-      color: var(--text-light);
     }
 
     .sidebar a {
       display: block;
-      color: var(--text-light);
+      color: white;
       text-decoration: none;
       margin: 10px 0;
       padding: 10px;
       border-radius: 6px;
-      transition: all 0.2s;
+      transition: background 0.2s;
     }
-    
+
     .sidebar a:hover, .sidebar a.active {
       background: var(--secondary);
-      color: var(--accent);
     }
 
     /* Main content */
@@ -89,18 +82,16 @@
 
     /* Leaderboard Section */
     .leaderboard-preview {
-      background: var(--dark-surface);
+      background: white;
       border-radius: 10px;
       padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       margin-bottom: 20px;
-      border: 1px solid var(--border-dark);
     }
 
     .leaderboard-preview h2 {
       margin-top: 0;
       margin-bottom: 15px;
-      color: var(--text-light);
     }
 
     .top-three {
@@ -113,18 +104,12 @@
     .top-card {
       flex: 1;
       min-width: 150px;
-      background: var(--secondary);
+      background: #f9f9f9;
       border-radius: 12px;
       padding: 25px 15px 15px;
       position: relative;
       text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      border: 1px solid var(--border-dark);
-      transition: transform 0.2s;
-    }
-
-    .top-card:hover {
-      transform: translateY(-5px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
     .rank-badge {
@@ -140,7 +125,7 @@
       justify-content: center;
       font-weight: bold;
       font-size: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     .rank-1 .rank-badge {
@@ -158,12 +143,6 @@
 
     .top-card h3 {
       margin: 10px 0 5px;
-      color: var(--text-light);
-    }
-
-    .top-card p {
-      color: var(--text-muted);
-      margin: 0;
     }
 
     .leaderboard-link {
@@ -172,25 +151,21 @@
       color: var(--accent);
       font-weight: 600;
       text-decoration: none;
-      transition: color 0.2s;
     }
     .leaderboard-link:hover {
-      color: #38bdf8;
       text-decoration: underline;
     }
 
     /* Notes Section */
     .notes {
-      background: var(--dark-surface);
+      background: white;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      border: 1px solid var(--border-dark);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
     .notes h2 {
       margin-top: 0;
-      color: var(--text-light);
     }
 
     .note-form {
@@ -204,25 +179,13 @@
       resize: vertical;
       min-height: 60px;
       padding: 10px;
-      border: 1px solid var(--border-dark);
+      border: 1px solid #ddd;
       border-radius: 6px;
       font-size: 14px;
-      background: var(--secondary);
-      color: var(--text-light);
-    }
-
-    .note-form textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .note-form textarea::placeholder {
-      color: var(--text-muted);
     }
 
     .note-form input[type="file"] {
       font-size: 14px;
-      color: var(--text-muted);
     }
 
     .note-form button {
@@ -233,32 +196,21 @@
       padding: 8px 15px;
       border-radius: 6px;
       cursor: pointer;
-      transition: background 0.2s;
     }
 
     .note-form button:hover {
-      background: #0284c7;
+      background: #2980b9;
     }
 
     .note {
-      border-bottom: 1px solid var(--border-dark);
+      border-bottom: 1px solid #eee;
       padding: 15px 0;
-    }
-
-    .note:last-child {
-      border-bottom: none;
-    }
-
-    .note p {
-      color: var(--text-light);
-      margin: 0 0 10px 0;
     }
 
     .note img {
       max-width: 100%;
       border-radius: 6px;
       margin-top: 10px;
-      border: 1px solid var(--border-dark);
     }
 
     /* Responsive layout */
@@ -276,8 +228,6 @@
         justify-content: space-around;
         align-items: center;
         padding: 10px;
-        border-right: none;
-        border-bottom: 1px solid var(--border-dark);
       }
 
       .sidebar h2 {
@@ -318,7 +268,8 @@
     <div class="notes">
       <h2>Posts (coming soon)</h2>
       <form class="note-form" id="noteForm">
-        <textarea id="noteText" placeholder="Made by Maanu"></textarea>
+        <textarea id="noteText" placeholder="Made by vix"></textarea>
+        <input type="file" id="noteImage" accept="image/*"/>
         <button type="submit">Add Post</button>
       </form>
       <div id="notesContainer"></div>
@@ -327,8 +278,6 @@
 
   <script src="leaderboard-data.js"></script>
   <script>
-    // Mock data for demonstration (since leaderboard-data.js isn't provided)
-    
     // --- Leaderboard ---
     function renderTopThree() {
       const sorted = [...teachers].sort((a,b) => b.absences - a.absences);
@@ -393,3 +342,4 @@
   </script>
 </body>
 </html>
+

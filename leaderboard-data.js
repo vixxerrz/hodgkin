@@ -5,11 +5,11 @@ const teachers = [
   },
   {
     "name": "Krishna",
-    "absences": 2
+    "absences": 3
   },
   {
     "name": "Seema",
-    "absences": 3
+    "absences": 4
   },
   {
     "name": "Amjadh",
