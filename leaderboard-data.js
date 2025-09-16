@@ -5,11 +5,11 @@ const teachers = [
   },
   {
     "name": "Krishna",
-    "absences": 3
+    "absences": 4
   },
   {
     "name": "Seema",
-    "absences": 4
+    "absences": 5
   },
   {
     "name": "Amjadh",
@@ -21,7 +21,7 @@ const teachers = [
   },
   {
     "name": "Abraham",
-    "absences": 1
+    "absences": 2
   },
   {
     "name": "Anthony",
@@ -45,7 +45,7 @@ const teachers = [
   },
   {
     "name": "Haritha",
-    "absences": 0
+    "absences": 1
   },
   {
     "name": "Reshma",
