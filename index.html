@@ -22,7 +22,6 @@
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: var(--dark-bg);
       color: var(--text-light);
     }
@@ -73,6 +72,7 @@
       padding: 10px;
       border-radius: 6px;
       transition: all 0.2s;
+      font-family: Arial, sans-serif;
     }
     
     .sidebar a:hover, .sidebar a.active {
@@ -319,6 +319,7 @@
       <h2>Posts (coming soon)</h2>
       <form class="note-form" id="noteForm">
         <textarea id="noteText" placeholder="Made by Maanu"></textarea>
+        <input type="file" id="noteImage" accept="image/*"/>
         <button type="submit">Add Post</button>
       </form>
       <div id="notesContainer"></div>
