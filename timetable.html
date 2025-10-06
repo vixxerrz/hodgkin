@@ -296,10 +296,18 @@
       </div>
     </div>
     
-    <div class="last-updated">
-      Last updated: September 2023
+    <!-- Extra Timetable Section -->
+    <div class="timetable-card" style="margin-top: 30px;">
+      <h3>Extra timetable</h3>
+      <div class="timetable-container">
+        <img src="extra_tt.jpg" alt="Extra Timetable" class="timetable-image" onclick="openModal(this)">
+        
+        <div id="no-timetable-message-extra" class="error-message">
+          <p>Timetable image not found. Please contact vix to ensure <b>extra_tt.jpg</b> is in the same folder.</p>
+        </div>
+      </div>
     </div>
-  </div>
+
 
   <!-- Modal for zoomed image -->
   <div id="imageModal" class="modal">
