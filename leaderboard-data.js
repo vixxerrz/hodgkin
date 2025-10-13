@@ -17,11 +17,11 @@ const teachers = [
   },
   {
     "name": "Vinoth",
-    "absences": 1
+    "absences": 2
   },
   {
     "name": "Abraham",
-    "absences": 2
+    "absences": 3
   },
   {
     "name": "Anthony",
