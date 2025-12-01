@@ -53,7 +53,7 @@ const teachers = [
   },
   {
     "name": "Sanika",
-    "absences": 6
+    "absences": 7
   },
   {
     "name": "Sudheesh",
